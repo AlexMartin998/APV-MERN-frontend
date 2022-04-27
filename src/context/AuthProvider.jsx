@@ -3,22 +3,27 @@ import { axiosClient } from '../config/axios';
 
 export const AuthContext = createContext();
 
+const validateTokenFromLS = () => {
+  const token = localStorage.getItem('token');
+  if (!token) return false;
+
+  return {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
+
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const tokenJWT = localStorage.getItem('token');
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${tokenJWT}`,
-    },
-  };
-
   // useEffect pa peticiones async | modificar el state
   useEffect(() => {
     const authUser = async () => {
-      if (!tokenJWT) return setLoading(false);
+      const config = validateTokenFromLS();
+      if (!config) return setLoading(false);
 
       try {
         // TODO: Refrescar el token como hace FH
@@ -27,6 +32,7 @@ export const AuthProvider = ({ children }) => {
         setAuth(data.user);
       } catch (error) {
         console.log(error.response.data);
+        setAuth({});
       }
 
       // Private Routes
@@ -44,6 +50,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateProfile = async data => {
+    const config = validateTokenFromLS();
+    if (!config) return setLoading(false);
+
     try {
       await axiosClient.put(`veterinarians/profile/${data.uid}`, data, config);
     } catch (error) {
@@ -52,6 +61,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updatePassword = async passwordsObj => {
+    const config = validateTokenFromLS();
+    if (!config) return setLoading(false);
+
     try {
       const { data } = await axiosClient.put(
         `/veterinarians/update-password`,

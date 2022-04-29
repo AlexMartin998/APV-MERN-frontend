@@ -22,7 +22,7 @@ const validateTokenFromLS = () => {
 export const PrivateRoute = () => {
   const { auth } = useAuth();
   const { setPatients } = usePatients();
-  
+
   useEffect(() => {
     const getPatientsFromAuthUser = async () => {
       console.log('PATIENT PROVIDER');
@@ -40,10 +40,10 @@ export const PrivateRoute = () => {
       }
     };
 
-    // // getPatientsFromAuthUser();
-    return () => {
-      getPatientsFromAuthUser();
-    };
+    getPatientsFromAuthUser();
+    // return () => {
+    //   getPatientsFromAuthUser();
+    // };
   }, []);
 
   /* useEffect(() => {

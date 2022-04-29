@@ -39,9 +39,10 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     };
 
-    return () => {
-      authUser();
-    };
+    authUser();
+    // return () => {
+    //   authUser();
+    // };
   }, []);
 
   const logOut = () => {

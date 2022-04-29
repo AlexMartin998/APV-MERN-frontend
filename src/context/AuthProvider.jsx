@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
       try {
         // TODO: Refrescar el token como hace FH
-        const { data } = await axiosClient('/veterinarians/perfil', config);
+        const { data } = await axiosClient('/veterinarians/profile', config);
 
         setAuth(data.user);
       } catch (error) {

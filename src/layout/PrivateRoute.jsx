@@ -40,7 +40,7 @@ export const PrivateRoute = () => {
       }
     };
 
-    // getPatientsFromAuthUser();
+    // // getPatientsFromAuthUser();
     return () => {
       getPatientsFromAuthUser();
     };

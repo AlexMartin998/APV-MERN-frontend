@@ -5,7 +5,6 @@ import { axiosClient } from '../config/axios';
 import { useAuth } from '../hooks/useAuth';
 
 export const Login = () => {
-  // TODO: Crear un  useForm  q me permita tener mensajes x cada input, como aqui
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alerta, setAlerta] = useState({});
@@ -45,7 +44,6 @@ export const Login = () => {
         email: data.user.email,
       });
 
-      // TODO: Ya deberia cargar el state de patients pa tener el arr a penas se carga ese layout
     } catch (error) {
       return setAlerta({
         msg: error.response.data.msg,

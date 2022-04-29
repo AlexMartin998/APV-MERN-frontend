@@ -9,33 +9,6 @@ export const PatientProvider = ({ children }) => {
   const [patients, setPatients] = useState([]);
   const [currentPatient, setCurrentPatient] = useState({});
 
-  // TODO: BUG - No se cargan cuando hace login
-  // useEffect(() => {
-  //   const getPatientsFromAuthUser = async () => {
-  //     console.log('PATIENT PROVIDER');
-
-  //     if (!token) return;
-
-  //     try {
-  //       const { data } = await axiosClient(`/patients`, {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
-
-  //       setPatients(data.patients);
-  //     } catch (error) {
-  //       console.log(error.response.data);
-  //     }
-  //   };
-
-  //   // getPatientsFromAuthUser();
-  //   return () => {
-  //     getPatientsFromAuthUser();
-  //   };
-  // }, []);
-
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -106,7 +79,7 @@ export const PatientProvider = ({ children }) => {
         setEdition,
         currentPatient,
         deletePatient,
-        setPatients
+        setPatients,
       }}
     >
       {children}

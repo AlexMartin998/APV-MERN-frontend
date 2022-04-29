@@ -125,7 +125,7 @@ export const Register = () => {
 
         <nav className="mt-9 lg:flex lg:justify-between">
           <Link to="/" className="block text-center my-5 text-gray-500">
-            Ya tienes una cuenta? Inicia sesion
+          ¿Ya tienes una cuenta? Inicia Sesión
           </Link>
 
           <Link
